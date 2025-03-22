@@ -55,7 +55,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           };
         } catch (error) {
           console.log(error);
-
           if (error instanceof HTTPError) {
             const response = await error.response.json();
             throw new AuthError(response.message);

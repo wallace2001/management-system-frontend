@@ -15,9 +15,6 @@ export default async function RootLayout({
   }
 
   const isUser = data.user.role === 'USER';
-
-  console.log(data.user.role);
-
   return (
     <div>
       <Header user={data.user} />

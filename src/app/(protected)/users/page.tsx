@@ -21,7 +21,6 @@ export default function UsersPage() {
   return (
     <div className="mt-[80px] p-6">
       <EditUserModal />
-
       <ConfirmDeleteUserModal />
       <div className="mb-4 flex items-center justify-between">
         <h1 className="text-2xl font-semibold">Usuários</h1>

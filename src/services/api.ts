@@ -1,5 +1,7 @@
+import { TOKEN, USER_ID } from '@/constants/cookies';
 import { getToken } from '@/lib/auth';
 import { env } from '@/lib/env';
+import { deleteCookie } from 'cookies-next';
 
 import ky from 'ky';
 
@@ -22,27 +24,19 @@ const api = ky.create({
         }
       },
     ],
-    // afterResponse: [
-    //   async (input, _, response) => {
-    //     if (response.status !== 401) return response;
-    //     try {
-    //       const response = await ky(input.url, {
-    //         method: input.method,
-    //         headers: {
-    //           'Content-Type': 'application/json',
-    //           Authorization: `Bearer ${tokens.token}`,
-    //         },
-    //         timeout: 50000,
-    //       });
+    afterResponse: [
+      async (request, options, response) => {
+        if (response.status === 401) {
+          if (typeof window !== 'undefined') {
+            deleteCookie(TOKEN);
+            deleteCookie(USER_ID);
+            window.location.href = '/auth/login';
+          }
+        }
 
-    //       return response;
-    //     } catch (error) {
-    //       console.error('Erro ao tentar refresh do token:', error);
-    //       await logout();
-    //       return response;
-    //     }
-    //   },
-    // ],
+        return response;
+      },
+    ],
   },
 });
 export { api };
