@@ -10,7 +10,7 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { Skeleton } from '@/components/ui/skeleton';
-import { Trash2, Pencil } from 'lucide-react';
+import { Trash2, Pencil, PackageX } from 'lucide-react';
 import { Product } from '@/modules/shared/types/product';
 import { useProductModals } from '../store/use-products-modal-store';
 
@@ -49,6 +49,15 @@ export const ProductsTable = ({
     ));
   };
 
+  if (!isLoading && (!products || products.length === 0)) {
+    return (
+      <div className="flex flex-col items-center justify-center h-64 text-muted-foreground">
+        <PackageX className="w-12 h-12 mb-2" />
+        <p className="text-sm">Nenhum produto encontrado.</p>
+      </div>
+    );
+  }
+
   return (
     <Table>
       <TableHeader>
@@ -69,7 +78,9 @@ export const ProductsTable = ({
                 <TableCell>{product.name}</TableCell>
                 <TableCell>{product.category}</TableCell>
                 <TableCell>R$ {product.price.toFixed(2)}</TableCell>
-                <TableCell className="max-w-xs truncate">{product.description}</TableCell>
+                <TableCell className="max-w-xs truncate">
+                  {product.description}
+                </TableCell>
                 <TableCell>{product.stockQuantity}</TableCell>
                 <TableCell className="space-x-2 text-right">
                   <Button
