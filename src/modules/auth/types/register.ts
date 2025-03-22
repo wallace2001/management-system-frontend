@@ -1,6 +1,6 @@
 export type RegisterCredentials = {
-    username: string;
-    password: string;
-    confirmPassword: string;
-    role: 'ADMIN' | 'USER';
-  };
+  username: string;
+  password: string;
+  confirmPassword: string;
+  role: 'ADMIN' | 'USER';
+};

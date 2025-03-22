@@ -1,4 +1,4 @@
-import { RegisterForm } from "@/modules/auth/components/register-form";
+import { RegisterForm } from '@/modules/auth/components/register-form';
 
 export default function Login() {
   return (

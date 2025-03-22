@@ -5,6 +5,7 @@ import { HTTPError } from 'ky';
 import NextAuth, { CredentialsSignin } from 'next-auth';
 
 import Credentials from 'next-auth/providers/credentials';
+import { DefaultUser } from './auth';
 
 type LoginResponse = {
   access_token: string;
@@ -49,8 +50,8 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           cookiesStore.set(TOKEN, loginData.access_token);
 
           return {
-            user: profileData,
-            ...loginData,
+            ...profileData,
+            access_token: loginData.access_token,
           };
         } catch (error) {
           console.log(error);
@@ -69,28 +70,22 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     signIn: '/auth/login',
   },
   callbacks: {
-    async jwt({ token, session, trigger, user }) {
-      token.user = {
-        ...token.user,
-        ...user,
-      };
-
-      if (trigger === 'update' && session) {
-        token.user = {
-          ...token.user,
-          ...session?.user,
-        };
+    async jwt({ token, user }) {
+      if (user) {
+        token.user = user as DefaultUser;
+        token.access_token = user.access_token;
       }
-
       return token;
     },
     async session({ session, token }) {
       session.user = {
-        ...token.user,
-        ...session.user,
+        ...(token.user as DefaultUser),
+        email: '',
+        emailVerified: new Date(),
       };
       return session;
     },
+
     authorized({ auth, request: { nextUrl } }) {
       const isLoggedIn = !!auth?.user;
 
@@ -115,4 +110,4 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       return true;
     },
   },
-})
+});

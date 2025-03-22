@@ -115,7 +115,7 @@ export function RegisterForm() {
 
         <SubmitButton>Cadastrar</SubmitButton>
         <p className="text-center text-sm text-gray-600">
-          {"Já tem uma conta? "}
+          {'Já tem uma conta? '}
           <Link href="/auth/login" className="font-semibold text-gray-800">
             Entrar
           </Link>

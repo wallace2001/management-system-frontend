@@ -10,10 +10,10 @@ export function getToken() {
 }
 
 export async function logout() {
-    return new Promise(async (resolve) => {
-      window.localStorage.clear();
-      await Promise.all([deleteCookie(TOKEN), deleteCookie(USER_ID)]);
-      window.location.pathname = '/auth/login';
-      resolve(true);
-    });
+  return new Promise(async (resolve) => {
+    window.localStorage.clear();
+    await Promise.all([deleteCookie(TOKEN), deleteCookie(USER_ID)]);
+    window.location.pathname = '/auth/login';
+    resolve(true);
+  });
 }

@@ -1,6 +1,6 @@
 export type Profile = {
   id: string;
   username: string;
-  role: string;
+  role: 'ADMIN' | 'USER';
   createdAt: Date;
 };

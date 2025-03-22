@@ -44,7 +44,7 @@ export function LoginForm() {
             <FormItem>
               <FormLabel>Usuário</FormLabel>
               <FormControl>
-                <Input className='h-12' placeholder="Seu usuário" {...field} />
+                <Input className="h-12" placeholder="Seu usuário" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -67,7 +67,7 @@ export function LoginForm() {
 
         <SubmitButton>Entrar</SubmitButton>
         <p className="text-center text-sm text-gray-600">
-          {"Ainda não tem uma conta? "}
+          {'Ainda não tem uma conta? '}
           <Link href="/auth/register" className="font-semibold text-gray-800">
             Cadastrar
           </Link>

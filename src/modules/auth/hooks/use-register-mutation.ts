@@ -13,7 +13,9 @@ export function useRegisterMutation() {
     mutationFn: (values: RegisterCredentials) => register(values),
     onSuccess() {
       router.replace('/auth/login');
-      toast.success('Registro efetuado com sucesso! Agora você pode fazer login.');
+      toast.success(
+        'Registro efetuado com sucesso! Agora você pode fazer login.',
+      );
     },
     async onError(error: HTTPError<{ message: string }> | Error) {
       let errorMessage = 'Tente novamente';

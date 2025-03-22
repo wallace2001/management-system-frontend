@@ -33,7 +33,9 @@ export default function RootProvider({
     handleSession();
   }, [pathname, router]);
 
-  return <ReactQueryProvider>
-    <SessionProvider>{children}</SessionProvider>
-  </ReactQueryProvider>;
+  return (
+    <ReactQueryProvider>
+      <SessionProvider>{children}</SessionProvider>
+    </ReactQueryProvider>
+  );
 }
