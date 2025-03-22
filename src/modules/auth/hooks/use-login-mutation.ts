@@ -16,8 +16,6 @@ export function useLoginMutation() {
     },
     async onError(error: HTTPError<{ message: string }> | Error) {
       let errorMessage = 'Tente novamente';
-      console.log(error);
-
       if (error instanceof HTTPError) {
         const errorResponse = await error.response.json();
         errorMessage = errorResponse!.message || errorMessage;

@@ -1,11 +1,11 @@
 import { TOKEN, USER_ID } from '@/constants/cookies';
 import { Profile } from '@/modules/shared/types/profile';
-import { api } from '@/services/api';
 import { HTTPError } from 'ky';
 import NextAuth, { CredentialsSignin } from 'next-auth';
 
 import Credentials from 'next-auth/providers/credentials';
 import { DefaultUser } from './auth';
+import { apiServer } from '@/services/api-server';
 
 type LoginResponse = {
   access_token: string;
@@ -29,13 +29,13 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       },
       authorize: async (credentials) => {
         try {
-          const loginData = await api
+          const loginData = await apiServer
             .post<LoginResponse>('auth/login', {
               json: credentials,
             })
             .json();
 
-          const profileData = await api
+          const profileData = await apiServer
             .get<Profile>('auth/me', {
               headers: {
                 Authorization: `Bearer ${loginData.access_token}`,
