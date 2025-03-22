@@ -1,3 +1,4 @@
+import Header from "@/components/header";
 import { auth } from "@/lib/auth/auth-config";
 import { redirect } from "next/navigation";
 
@@ -14,6 +15,7 @@ export default async function RootLayout({
 
   return (
     <div>
+        <Header user={data.user}/>
         {children}
     </div>
   );

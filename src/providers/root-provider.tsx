@@ -5,6 +5,7 @@ import { ReactQueryProvider } from './react-query-provider';
 import { getCookie } from 'cookies-next';
 import { TOKEN } from '@/constants/cookies';
 import { usePathname, useRouter } from 'next/navigation';
+import { SessionProvider } from 'next-auth/react';
 
 export default function RootProvider({
   children,
@@ -32,5 +33,7 @@ export default function RootProvider({
     handleSession();
   }, [pathname, router]);
 
-  return <ReactQueryProvider>{children}</ReactQueryProvider>;
+  return <ReactQueryProvider>
+    <SessionProvider>{children}</SessionProvider>
+  </ReactQueryProvider>;
 }
