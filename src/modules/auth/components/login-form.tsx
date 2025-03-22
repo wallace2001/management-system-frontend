@@ -68,7 +68,7 @@ export function LoginForm() {
         <SubmitButton>Entrar</SubmitButton>
         <p className="text-center text-sm text-gray-600">
           {"Ainda não tem uma conta? "}
-          <Link href="/register" className="font-semibold text-gray-800">
+          <Link href="/auth/register" className="font-semibold text-gray-800">
             Cadastrar
           </Link>
         </p>
