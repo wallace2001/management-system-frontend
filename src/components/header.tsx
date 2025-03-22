@@ -18,7 +18,6 @@ export default function Header({ user }: { user: User }) {
           <Link href="/">Management</Link>
         </p>
 
-        {/* Desktop Menu */}
         <div className="hidden items-center gap-2 md:flex">
           <Button
             variant={pathname === '/products' ? 'default' : 'outline'}
@@ -50,7 +49,6 @@ export default function Header({ user }: { user: User }) {
           )}
         </div>
 
-        {/* Mobile Menu */}
         <div className="md:hidden">
           <Sheet>
             <SheetTrigger asChild>
